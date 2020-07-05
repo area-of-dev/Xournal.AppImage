@@ -1,0 +1,29 @@
+#! /bin/bash
+
+
+set -e
+
+
+PATH=${APPDIR}/application:${PATH}
+export PATH=${PATH}
+
+
+XDG_DATA_DIRS="$APPDIR"/usr/share:"$XDG_DATA_DIRS"
+export XDG_DATA_DIRS=${XDG_DATA_DIRS}
+
+#export GDK_PIXBUF_MODULEDIR="$APPDIR"/usr/lib/gdk-pixbuf-2.0/loaders
+#export GDK_PIXBUF_MODULE_FILE="$APPDIR"/usr/lib/gdk-pixbuf-2.0/loaders.cache
+
+#export GTK_PATH="$APPDIR"/usr/lib/gtk-3.0
+#export PANGO_LIBDIR="$APPDIR"/usr/lib
+
+#export LD_LIBRARY_PATH="$APPDIR"/usr/lib:"$GDK_PIXBUF_MODULEDIR":"$LD_LIBRARY_PATH"
+
+
+
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${APPDIR}/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+cd ${HOME}
+
+${APPDIR}/application/xournalpp $@
