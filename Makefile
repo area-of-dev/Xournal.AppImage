@@ -28,6 +28,10 @@ all:
 	wget --output-document=build.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/compat-poppler022-0.22.5-4.el7.x86_64.rpm
 	rpm2cpio build.rpm | cpio -idmv
 
+	wget --output-document=build.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/libpng-1.5.13-7.el7_2.x86_64.rpm
+	rpm2cpio build.rpm | cpio -idmv
+
+
 
 	mkdir -p AppDir/application
 	mkdir -p AppDir/share
