@@ -22,6 +22,12 @@ all:
 	wget --output-document=build.rpm https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.2/repo/oss/x86_64/liblua5_3-5-5.3.4-lp152.4.112.x86_64.rpm
 	rpm2cpio build.rpm | cpio -idmv
 
+	wget --output-document=build.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/compat-poppler022-glib-0.22.5-4.el7.x86_64.rpm
+	rpm2cpio build.rpm | cpio -idmv
+
+	wget --output-document=build.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/compat-poppler022-0.22.5-4.el7.x86_64.rpm
+	rpm2cpio build.rpm | cpio -idmv
+
 
 	mkdir -p AppDir/application
 	mkdir -p AppDir/share
@@ -37,11 +43,9 @@ all:
 	chmod +x $(OUTPUT)
 
 	rm -rf *.rpm *.deb *.tar.gz *.zip
-	rm -rf ./build 
-	rm -rf ./usr 
+	rm -rf ./build
+	rm -rf ./usr
 	rm -rf ./AppDir/application
 	rm -rf ./AppDir/share
 	rm -rf ./AppDir/lib
 	rm -rf ./AppDir/share
-
-
