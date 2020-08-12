@@ -26,4 +26,4 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 cd ${HOME}
 
-${APPDIR}/application/xournalpp $@
+${APPDIR}/application/xournalpp "$@"
