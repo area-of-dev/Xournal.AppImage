@@ -57,8 +57,8 @@ all:
 	mkdir -p AppDir/share
 	mkdir -p AppDir/lib
 
-	cp -r build/xournalpp-1.0.18-Debian-buster-x86_64/bin/* ./AppDir/application
-	cp -r build/xournalpp-1.0.18-Debian-buster-x86_64/share/* ./AppDir/share
+	cp -r build/xournalpp-*-Debian-buster-x86_64/bin/* ./AppDir/application
+	cp -r build/xournalpp-*-Debian-buster-x86_64/share/* ./AppDir/share
 	cp -r ./usr/lib64/* ./AppDir/lib
 
 
