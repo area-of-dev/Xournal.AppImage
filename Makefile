@@ -17,12 +17,13 @@ OUTPUT="Xournal.AppImage"
 all: clean
 	mkdir --parents $(PWD)/build
 	mkdir --parents $(PWD)/build/AppDir
+	mkdir --parents $(PWD)/build/AppDir/lib
 	mkdir --parents $(PWD)/build/AppDir/xournal
 	mkdir --parents $(PWD)/build/AppDir/share
 
 
 
-	wget --output-document=$(PWD)/build/build.tar.gz https://github.com/xournalpp/xournalpp/releases/download/1.0.18/xournalpp-1.0.18-Debian-buster-x86_64.tar.gz
+	wget --output-document=$(PWD)/build/build.tar.gz https://github.com/xournalpp/xournalpp/releases/download/1.0.19/xournalpp-1.0.19-Ubuntu-xenial-x86_64.tar.gz
 	tar -zxvf $(PWD)/build/build.tar.gz -C $(PWD)/build
 
 	wget --output-document=$(PWD)/build/build.rpm https://rpms.remirepo.net/enterprise/7/remi/x86_64/libzip-last-1.1.3-1.el7.remi.x86_64.rpm
@@ -49,8 +50,8 @@ all: clean
 	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/libpng15-1.5.30-7.el8.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
-	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/gtk3-3.22.30-5.el8.x86_64.rpm
-	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
+	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/g/gtk+3.0/libgtk-3-0_3.24.5-1_amd64.deb
+	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
 	wget --output-document=$(PWD)/build/build.rpm https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.2/repo/oss/x86_64/libatk-1_0-0-2.34.1-lp152.1.7.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
@@ -61,20 +62,17 @@ all: clean
 	wget --output-document=$(PWD)/build/build.rpm https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.2/repo/oss/x86_64/libatspi0-2.34.0-lp152.2.4.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
-	wget --output-document=$(PWD)/build/build.rpm https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.2/repo/oss/x86_64/liblua5_3-5-5.3.4-lp152.4.112.x86_64.rpm
+	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/l/lua5.3/liblua5.3-0_5.3.3-1.1_amd64.deb
+	dpkg -x $(PWD)/build/build.deb $(PWD)/build
+
+	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/t/tiff/libtiff5_4.1.0+git191117-2~deb10u1_amd64.deb
+	dpkg -x $(PWD)/build/build.deb $(PWD)/build
+
+	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/jbigkit-libs-2.1-14.el8.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
-	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/libtiff-4.0.9-17.el8.x86_64.rpm
-	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
-
-
-
-
-
-
-	cp --force --recursive $(PWD)/build/xournalpp-*-Debian-buster-x86_64/bin/* $(PWD)/build/AppDir/xournal
-	cp --force --recursive $(PWD)/build/xournalpp-*-Debian-buster-x86_64/share/* $(PWD)/build/AppDir/share
-
+	cp --force --recursive $(PWD)/build/xournalpp-*/bin/* $(PWD)/build/AppDir/xournal
+	cp --force --recursive $(PWD)/build/xournalpp-*/share/* $(PWD)/build/AppDir/share
 	cp --force --recursive $(PWD)/build/usr/* $(PWD)/build/AppDir/
 	cp --force --recursive $(PWD)/AppDir/* $(PWD)/build/AppDir
 
