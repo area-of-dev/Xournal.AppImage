@@ -12,8 +12,6 @@
 PWD:=$(shell pwd)
 
 
-OUTPUT="Xournal.AppImage"
-
 all: clean
 	mkdir --parents $(PWD)/build
 	mkdir --parents $(PWD)/build/AppDir
@@ -73,6 +71,16 @@ all: clean
 
 	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/j/jbigkit/libjbig0_2.1-3.1_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
+
+	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/libr/librsvg/librsvg2-2_2.40.13-3_amd64.deb
+	dpkg -x $(PWD)/build/build.deb $(PWD)/build
+
+	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/g/gdk-pixbuf/libgdk-pixbuf2.0-0_2.32.2-1ubuntu1_amd64.deb
+	dpkg -x $(PWD)/build/build.deb $(PWD)/build
+
+
+
+
 
 	cp --force --recursive $(PWD)/build/xournalpp-*/bin/* $(PWD)/build/AppDir/xournal
 	cp --force --recursive $(PWD)/build/xournalpp-*/share/* $(PWD)/build/AppDir/share
