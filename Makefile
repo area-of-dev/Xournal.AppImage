@@ -60,6 +60,13 @@ all: clean
 	wget --output-document=$(PWD)/build/build.rpm https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.2/repo/oss/x86_64/libatspi0-2.34.0-lp152.2.4.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
+	wget --output-document=$(PWD)/build/build.rpm https://rpmfind.net/linux/centos/8.2.2004/AppStream/x86_64/os/Packages/libpng12-1.2.57-5.el8.x86_64.rpm
+	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
+
+	wget --output-document=$(PWD)/build/build.rpm http://rpmfind.net/linux/centos/8.2.2004/AppStream/x86_64/os/Packages/librsvg2-2.42.7-3.el8.x86_64.rpm
+	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
+
+
 	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/l/lua5.3/liblua5.3-0_5.3.3-1.1_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
@@ -72,20 +79,20 @@ all: clean
 	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/j/jbigkit/libjbig0_2.1-3.1_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
-	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/libr/librsvg/librsvg2-2_2.40.13-3_amd64.deb
-	dpkg -x $(PWD)/build/build.deb $(PWD)/build
-
 	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/g/gdk-pixbuf/libgdk-pixbuf2.0-0_2.32.2-1ubuntu1_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
-
-
-
 
 
 	cp --force --recursive $(PWD)/build/xournalpp-*/bin/* $(PWD)/build/AppDir/xournal
 	cp --force --recursive $(PWD)/build/xournalpp-*/share/* $(PWD)/build/AppDir/share
 	cp --force --recursive $(PWD)/build/usr/* $(PWD)/build/AppDir/
 	cp --force --recursive $(PWD)/AppDir/* $(PWD)/build/AppDir
+
+	cp --force --recursive  $(PWD)/build/AppDir/lib/x86_64-linux-gnu/* $(PWD)/build/AppDir/lib64
+	rm -rf $(PWD)/build/AppDir/lib/x86_64-linux-gnu
+
+	cp --force --recursive  $(PWD)/build/AppDir/lib/* $(PWD)/build/AppDir/lib64 || true
+	rm -rf $(PWD)/build/AppDir/lib  || true
 
 	chmod +x $(PWD)/build/AppDir/AppRun
 	chmod +x $(PWD)/build/AppDir/*.desktop
