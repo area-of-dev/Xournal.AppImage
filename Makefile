@@ -68,6 +68,10 @@ all: clean
 	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/t/tiff/libtiff5_4.1.0+git191117-2~deb10u1_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
+	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/libw/libwebp/libwebp6_0.6.1-2_amd64.deb
+	dpkg -x $(PWD)/build/build.deb $(PWD)/build
+
+
 	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/jbigkit-libs-2.1-14.el8.x86_64.rpm
 	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
 
@@ -81,21 +85,6 @@ all: clean
 
 	export ARCH=x86_64 && $(PWD)/bin/appimagetool.AppImage $(PWD)/build/AppDir $(PWD)/Xournal.AppImage
 	chmod +x $(PWD)/Xournal.AppImage
-
-
-
-# 	mkdir -p AppDir/application
-# 	mkdir -p AppDir/share
-# 	mkdir -p AppDir/lib
-
-# 	cp -r build/xournalpp-*-Debian-buster-x86_64/bin/* ./AppDir/application
-# 	cp -r build/xournalpp-*-Debian-buster-x86_64/share/* ./AppDir/share
-# 	cp -r ./usr/lib64/* ./AppDir/lib
-
-
-# 	chmod +x AppDir/AppRun
-# 	export ARCH=x86_64 && ./bin/appimagetool.AppImage AppDir $(OUTPUT)
-# 	chmod +x $(OUTPUT)
 
 clean:
 	rm -rf $(PWD)/build
