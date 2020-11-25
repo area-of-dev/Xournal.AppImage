@@ -71,9 +71,8 @@ all: clean
 	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/libw/libwebp/libwebp6_0.6.1-2_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
-
-	wget --output-document=$(PWD)/build/build.rpm http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/jbigkit-libs-2.1-14.el8.x86_64.rpm
-	cd $(PWD)/build && rpm2cpio $(PWD)/build/build.rpm | cpio -idmv && cd ..
+	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/j/jbigkit/libjbig0_2.1-3.1_amd64.deb
+	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
 	cp --force --recursive $(PWD)/build/xournalpp-*/bin/* $(PWD)/build/AppDir/xournal
 	cp --force --recursive $(PWD)/build/xournalpp-*/share/* $(PWD)/build/AppDir/share
