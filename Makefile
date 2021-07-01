@@ -70,7 +70,7 @@ all: clean
 	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/l/lua5.3/liblua5.3-0_5.3.3-1.1_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
-	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/t/tiff/libtiff5_4.1.0+git191117-2~deb10u1_amd64.deb
+	wget --output-document=$(PWD)/build/build.deb http://ftp.br.debian.org/debian/pool/main/t/tiff/libtiff5_4.1.0+git191117-2~deb10u2_amd64.deb
 	dpkg -x $(PWD)/build/build.deb $(PWD)/build
 
 	wget --output-document=$(PWD)/build/build.deb http://archive.ubuntu.com/ubuntu/pool/main/libw/libwebp/libwebp6_0.6.1-2_amd64.deb
